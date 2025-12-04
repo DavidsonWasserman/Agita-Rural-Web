@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/Style.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 
 <nav class="barraNav">
     

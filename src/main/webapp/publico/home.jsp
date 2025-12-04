@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Agita Rural - Home</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/Style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 
 <body>

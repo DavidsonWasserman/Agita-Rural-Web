@@ -26,11 +26,18 @@ public class LoginAdminServlet extends HttpServlet {
         Representante admin = dao.autenticar(email, senha);
 
         if (admin != null) {
+
             HttpSession sessao = request.getSession(true);
             sessao.setAttribute("adminLogado", admin);
+
             response.sendRedirect(request.getContextPath() + "/admin/painelDeControle.jsp");
+
         } else {
-        	response.sendRedirect(request.getContextPath() + "/loginadmin.jsp?erro=1");
+
+            request.setAttribute("erro", "Usuário ou senha incorretos!");
+            request.getRequestDispatcher("/admin/loginadmin.jsp")
+                   .forward(request, response);
+
         }
     }
 

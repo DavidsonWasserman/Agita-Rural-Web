@@ -13,10 +13,17 @@
 <div class="login-box">
     <h2>Login Administrador</h2>
 
-    <% String erro = (String) request.getAttribute("erro"); %>
-    <% if (erro != null) { %>
-        <div class="error"><%= erro %></div>
-    <% } %>
+    <% 
+    	String erro = (String) request.getAttribute("erro");
+    	if (erro == null && request.getParameter("erro") != null) {
+        	erro = "Usuário ou senha incorretos!";
+    	}
+	%>
+	
+	<% if (erro != null) { %>
+    	<div class="error"><%= erro %></div>
+	<% } %>
+
 
     <form action="<%= request.getContextPath() %>/loginadmin" method="post">
 		 <div class="form-row">

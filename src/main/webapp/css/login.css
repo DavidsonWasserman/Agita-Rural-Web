@@ -43,3 +43,13 @@
     border: none;
     cursor: pointer;
 }
+
+.error {
+    background: #ffdddd;
+    color: #b30000;
+    border: 1px solid #ff9e9e;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
