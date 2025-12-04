@@ -33,7 +33,7 @@
         <div class="card">
             <h3><%= principal.getNome() %></h3>
             <p><%= principal.getSobre() %></p>
-            <a href="projeto.jsp?id=0" class="button">Ver detalhes</a>
+            <a href="<%= request.getContextPath() %>/projeto?id=<%= principal.getId() %>" class="button">Ver detalhes</a>
         </div>
 
     </div>

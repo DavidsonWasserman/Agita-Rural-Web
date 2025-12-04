@@ -1,3 +1,5 @@
+<%@page import="modelos.Projeto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/componentes/barraNav.jsp" %>
@@ -10,14 +12,18 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/projetos.css">
 </head>
 
+<%
+    List<Projeto> projetos = (List<Projeto>) request.getAttribute("projetos");
+%>
+
 <body>
 	<div class="container">
 		<h2>Projetos</h2>
 			<div>
-				<form class="form-filtro">
+				<form class="form-filtro" action="<%= request.getContextPath() %>/projetos" method="get">
 					<div class="div-primeira">
 						<label for="titulo">Nome do projeto</label>
-						<input type="text" id="titulo">
+						<input type="text" id="titulo" name="nomeProjeto" value="${param.nomeProjeto}" autocomplete="off">
 					</div>
 					<div>
 						<button type="submit">Filtrar</button>
@@ -25,11 +31,15 @@
 				</form>
 			</div>
 			<div class="card-container">
-				<div class="card">
-		            <h3>Esporte na Rural</h3>
-		            <p>Vários esportes dentro da Universidade!</p>
-		            <a href="projeto.jsp?id=1" class="button">Ver detalhes</a>
-		        </div>
+				<% if (projetos != null && !projetos.isEmpty()) {%>
+					<% for (Projeto projeto : projetos) {%>
+						<div class="card">
+				            <h3><%= projeto.getNome() %></h3>
+				            <p><%= projeto.getSobre() %></p>
+				            <a href="<%= request.getContextPath()%>/projeto?id=<%= projeto.getId() %>" class="button">Ver detalhes</a>
+				        </div>
+					<% } %>
+				<% } %>
 			</div>
 		</div>
 </body>
