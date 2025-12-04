@@ -38,6 +38,9 @@ public class Projeto {
         this.localParaInformacao = localParaInformacao;
     }
 
+    public int getId() {
+    	return id;
+    }
     public String getNome() {
         return nome;
     }
@@ -61,7 +64,9 @@ public class Projeto {
         return new ArrayList<>(perfis);
     }
 
-
+    public void setId(int id) {
+    	this.id = id;
+    }
     public void setNome(String nome) {
         this.nome = nome;
     }
