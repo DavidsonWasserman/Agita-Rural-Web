@@ -12,9 +12,8 @@
 
 <body>
 
-<% Acao[] acoes = (Acao[]) session.getAttribute("acoes");
-   int id = Integer.parseInt(request.getParameter("id"));
-   Acao acaoprincipal = acoes[id];
+<%
+    modelos.Acao acaoprincipal = (modelos.Acao) request.getAttribute("acao");
 %>
 
 <section style="background:#004d26; color:white; padding:50px 20px; text-align:center;">

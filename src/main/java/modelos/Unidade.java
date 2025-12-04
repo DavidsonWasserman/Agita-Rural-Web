@@ -5,25 +5,38 @@ import jakarta.persistence.*;
 
 @Entity
 public class Unidade {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	private final String nome;
-	
-	@Enumerated(EnumType.STRING)
-	private TipoUnidade tipo;
 
-    public Unidade(String nome, TipoUnidade tipo){
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String nome;
+
+    @Enumerated(EnumType.STRING)
+    private TipoUnidade tipo;
+
+    protected Unidade() {}
+
+    public Unidade(int id, String nome, TipoUnidade tipo) {
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
+    }
+
+    public Unidade(String nome, TipoUnidade tipo) {
+        this.nome = nome;
+        this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
         return nome;
     }
+
     public TipoUnidade getTipo() {
         return tipo;
     }
 }
-
