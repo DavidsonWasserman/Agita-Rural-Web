@@ -3,6 +3,7 @@ package modelos;
 import enums.Status;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,9 @@ public class Acao {
             joinColumns = @JoinColumn(name = "acao_id"),
             inverseJoinColumns = @JoinColumn(name = "representante_id")
     )
-    private List<Representante> representantes;
+    private List<Representante> representantes = new ArrayList<>();
 
     private String nome;
-
     private String sobre;
 
     @Column(name = "publico_alvo")
@@ -39,7 +39,7 @@ public class Acao {
     private String preco;
 
     @Column(name = "data_inicio")
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
 
     @Column(name = "data_final")
     private LocalDateTime dataFim;
@@ -53,11 +53,14 @@ public class Acao {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    private String linkExterno;
+    private String email;
+    private String celular;
+
     protected Acao() {}
 
     public Acao(String nome, String sobre, String publicoAlvo, Local localizacao,
                 List<Representante> representantes, Unidade unidade, boolean possuiTaxa) {
-
         this.nome = nome;
         this.sobre = sobre;
         this.publicoAlvo = publicoAlvo;
@@ -66,7 +69,7 @@ public class Acao {
         this.unidade = unidade;
         this.possuiTaxa = possuiTaxa;
 
-        this.dataInicio = LocalDateTime.now();
+        this.dataInicio = LocalDate.now();
         this.status = Status.ATIVO;
 
         this.perfis = new ArrayList<>();
@@ -76,8 +79,9 @@ public class Acao {
         }
     }
 
-
-
+    // ---------------------------
+    // GETTERS
+    // ---------------------------
     public int getId() {
         return id;
     }
@@ -102,7 +106,7 @@ public class Acao {
         return localizacao;
     }
 
-    public LocalDateTime getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
@@ -130,7 +134,21 @@ public class Acao {
         return preco;
     }
 
-    
+    public String getLinkExterno() {
+        return linkExterno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    // ---------------------------
+    // SETTERS
+    // ---------------------------
     public void setSobre(String sobre) {
         this.sobre = sobre;
     }
@@ -165,7 +183,6 @@ public class Acao {
 
     public void setTaxa(boolean possuiTaxa) {
         this.possuiTaxa = possuiTaxa;
-
         if (!possuiTaxa) {
             this.preco = "GRATUITO";
         }
@@ -178,4 +195,19 @@ public class Acao {
             this.preco = preco;
         }
     }
+
+    public void setLinkExterno(String linkExterno) {
+        this.linkExterno = linkExterno;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+    public void setDataInicio(LocalDate now) {
+		this.dataInicio = now;
+	}
 }

@@ -57,4 +57,15 @@ public class AcaoDAO {
                 .findFirst()
                 .orElse(null);
     }
+    
+    // --- ATUALIZAR ---
+    public void atualizar(Acao acaoAtualizada) {
+        for (int i = 0; i < acoes.size(); i++) {
+            if (acoes.get(i).getId() == acaoAtualizada.getId()) {
+                acoes.set(i, acaoAtualizada); 
+                return;
+            }
+        }
+    }
+
 }
