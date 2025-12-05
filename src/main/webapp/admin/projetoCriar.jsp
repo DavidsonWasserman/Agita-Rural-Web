@@ -20,19 +20,19 @@
 
     <form action="<%= request.getContextPath() %>/admin/projeto/salvar" method="post">
 
-        <!-- Nome do Projeto -->
+        <!-- Nome -->
         <div class="criar-row">
             <label>Nome do Projeto</label>
             <input type="text" name="nome" required />
         </div>
 
-        <!-- Sobre / Descrição -->
+        <!-- Sobre -->
         <div class="criar-row">
             <label>Descrição / Sobre</label>
             <textarea name="sobre" rows="3" required></textarea>
         </div>
 
-        <!-- Público Alvo -->
+        <!-- Público-alvo -->
         <div class="criar-row">
             <label>Público-Alvo</label>
             <textarea name="publicoAlvo" rows="2"></textarea>
@@ -40,6 +40,7 @@
 
         <!-- Contato -->
         <h3>Informações de Contato</h3>
+
         <div class="criar-row">
             <label>Email</label>
             <input type="email" name="emailContato" required />
@@ -57,6 +58,7 @@
 
         <!-- Local -->
         <h3>Local do Projeto</h3>
+
         <div class="criar-row">
             <label>Nome do local</label>
             <input type="text" name="localNome" required />
@@ -72,45 +74,53 @@
             <input type="text" name="localPontoReferencia" />
         </div>
 
-        <!-- Unidade Responsável -->
+        <!-- Unidade -->
         <div class="criar-row">
             <label>Unidade Responsável</label>
             <select name="unidadeId" required>
                 <option value="">Selecione...</option>
+
                 <%
                     List<Unidade> unidades = (List<Unidade>) request.getAttribute("unidades");
                     if (unidades != null) {
                         for (Unidade u : unidades) {
                 %>
-                            <option value="<%= u.getId() %>"><%= u.getNome() %></option>
+                    <option value="<%= u.getId() %>"><%= u.getNome() %></option>
                 <%
                         }
                     }
                 %>
+
             </select>
         </div>
 
-        <!-- Seleção de Ações -->
+        <!-- AÇÕES DO PROJETO -->
         <div class="criar-row">
             <label>Ações do Projeto</label>
-            <div class="acoes-list">
+
+            <div class="acoes-list checkbox-wrapper">
+
                 <%
                     List<Acao> acoes = (List<Acao>) request.getAttribute("acoes");
                     if (acoes != null) {
                         for (Acao a : acoes) {
                 %>
-                            <div>
-                                <input type="checkbox" name="acoesSelecionadas" value="<%= a.getId() %>" />
-                                <span><%= a.getNome() %> – <%= a.getSobre() %></span>
-                            </div>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="acoesSelecionadas" value="<%= a.getId() %>">
+                    <span><strong><%= a.getNome() %></strong> – <%= a.getSobre() %></span>
+                </label>
+
                 <%
                         }
                     }
                 %>
+
             </div>
         </div>
 
         <button type="submit" class="btn">Salvar Projeto</button>
+
     </form>
 
 </div>

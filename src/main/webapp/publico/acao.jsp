@@ -28,7 +28,6 @@
 
     <div class="card-container">
 
-        <!-- CARD 1 -->
         <div class="card">
             <h3>Título</h3>
             <h4><%= acaoprincipal.getNome() %></h4>
